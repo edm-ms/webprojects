@@ -25,24 +25,24 @@ function convertGB() {
     utilization = parseFloat(utilization);
 
     var Mbps = overhead * (data * 1000 * 8) / (time * 60);
-    var linkSize = (Mbps / utilization);
-    Mbps = Math.ceil(Mbps, 1)
-    linkSize = Math.ceil(linkSize, 1)
+    var LinkSize = (Mbps / utilization);
+    Mbps = Math.ceil(Mbps, 1);
+    LinkSize = Math.ceil(LinkSize, 1);
 
     document.getElementById("Mbps").innerHTML = Mbps;
-    document.getElementById("linkSize").innerHTML = linkSize;
+    document.getElementById("LinkSize").innerHTML = LinkSize;
 
-    closest(erChoices, linkSize, Mbps);
+    closest(erChoices, LinkSize, Mbps);
 }
 
-function closest(erChoices, linkSize, Mbps) {
+function closest(erChoices, LinkSize, Mbps) {
     var i = 0;
     var m = 0;
     var minDiff = 100;
     var ans;
 
     for (i in erChoices) {
-        m = linkSize - erChoices[i];
+        m = LinkSize - erChoices[i];
         if (m <= 0) {
             ans = erNames[i];
             erMatch = erChoices[i];
