@@ -1,14 +1,6 @@
 var erChoices = [50, 100, 200, 500, 1000, 2000, 5000, 10000, 40000, 100000];
 var erNames = ["50 Mbps", "100 Mbps", "200 Mbps", "500 Mbps", "1 Gbps", "2 Gbps", "5 Gbps", "10 Gbps", "40 Gbps", "100 Gbps"];
 
-var slider = document.getElementById("utilization");
-var output = document.getElementById("sliderValue");
-output.innerHTML = slider.value;
-
-slider.oninput = function() {
-    output.innerHTML = this.value;
-}
-
 function openNav() {
     document.getElementById("myNav").style.width = "100%";
 }
