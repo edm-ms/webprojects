@@ -2,10 +2,11 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, text/JavaScript">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/sizingfunctions.js"></script>
     <style>
         .bg-1 {
             background-color: #a0a0a0;
@@ -120,7 +121,7 @@
             padding: 8px;
             text-decoration: none;
             font-size: 25px;
-            color: #818181;
+            color: #f1f1f1;
             display: block;
             transition: 0.3s;
         }
@@ -172,14 +173,22 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
             <p> <a href="javascript:void(0)" onclick="closeNav()">
-                In order to transfer <span id="gbRequested"></span> GB in <span id="timeInHours"></span></span> hours 
-                you need a connection speed of <span id="MBps"></span> Mbps. If the link utilization is <span id="howBusy"></span>%  
+                To transfer <span id="gbRequested"></span> GB in <span id="timeInHours"></span></span> hours 
+                you need a connection speed of <span id="Mbps"></span> Mbps. 
+                </a>
+            </p>
+            <p> <a href="javascript:void(0)" onclick="closeNav()">
+                In order to keep utilization under <span id="howBusy"></span>%  
                 the connection speed needs to be <span id="LinkSize"></span> Mbps.
                 </a>
             </p>
             <p> <a href="https://azure.microsoft.com/en-us/pricing/details/expressroute/" target="blank"> 
                 To meet the defined SLA we recommend an ExpressRoute size of: <span id="ans"></span>
             </a>
+            </p>
+            <p><a href="javascript:void(0)" onclick="closeNav()">
+                This workload will utilize <span id="erBusy"></span>% of the ExpressRoute.
+                </a>
             </p>
         </div>
     </div>
@@ -219,18 +228,18 @@
             utilization = parseFloat(utilization) / 100;
             utilization = parseFloat(utilization);
 
-            var MBps = overhead * (data * 1000 * 8) / (time * 60);
-            var LinkSize = (MBps / utilization);
-            var MBps = MBps.toFixed(0);
+            var Mbps = overhead * (data * 1000 * 8) / (time * 60);
+            var LinkSize = (Mbps / utilization);
+            var Mbps = Mbps.toFixed(0);
             var LinkSize = LinkSize.toFixed(0)
 
-            document.getElementById("MBps").innerHTML = MBps;
+            document.getElementById("Mbps").innerHTML = Mbps;
             document.getElementById("LinkSize").innerHTML = LinkSize;
 
-            closest(erChoices, LinkSize);
+            closest(erChoices, LinkSize, Mbps);
         }
 
-        function closest(erChoices, LinkSize) {
+        function closest(erChoices, LinkSize, Mbps) {
             var i = 0;
             var m = 0;
             var minDiff = 100;
@@ -240,9 +249,13 @@
                 m = LinkSize - erChoices[i];
                 if (m <= 0) {
                     ans = erNames[i];
+                    erMatch = erChoices[i];
                     break;
                 }
             }
+            var erBusy = (Mbps / erMatch) * 100;
+            erBusy = erBusy.toFixed(0);
+            document.getElementById("erBusy").innerHTML = erBusy;
             document.getElementById("ans").innerHTML = ans;
             openNav();
         }
