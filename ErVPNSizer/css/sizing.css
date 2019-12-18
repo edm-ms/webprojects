@@ -69,6 +69,11 @@ input[type=text]:focus {
     cursor: pointer;
 }
 
+input[type=range]::-moz-range-progress {
+    background-color: #4CAF50;
+    height: 1em;
+}
+
 .overlay {
     height: 100%;
     width: 0;
