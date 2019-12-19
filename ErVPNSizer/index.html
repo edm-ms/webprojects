@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/sizing.css" type="text/css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/sizingfunctions.js"></script>
     <style>
         .bg-1 {
@@ -54,12 +55,14 @@
     </div>
     <div id="myNav" class="overlay">
         <div class="overlay-content">
-            <p> <a href="javascript:void(0)" onclick="closeNav()">
+            <p>
+                <a href="javascript:void(0)" onclick="closeNav()">
                 To transfer <span id="gbRequested"></span> GB in <span id="timeInHours"></span></span> hours 
                 you need a connection speed of <span id="Mbps"></span> Mbps
                 </a>
             </p>
-            <p> <a href="javascript:void(0)" onclick="closeNav()">
+            <p>
+                <a href="javascript:void(0)" onclick="closeNav()">
                 In order to keep utilization under <span id="howBusy"></span>%
                 the connection speed needs to be <span id="LinkSize"></span> Mbps
                 </a>
@@ -74,7 +77,8 @@
                 The recommended VPN size is: <span id="vpnSizeEst" class="link"></span>
                 </a>
             </p>
-            <p><a href="javascript:void(0)" onclick="closeNav()">
+            <p>
+                <a href="javascript:void(0)" onclick="closeNav()">
                 This workload will utilize <span id="erBusy"></span>% of the ExpressRoute or <span id="vpnBusy"></span>% of the Virtual WAN
                 </a>
             </p>
