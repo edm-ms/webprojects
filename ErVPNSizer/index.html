@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>Azure Connection Sizer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, text/JavaScript">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/sizing.css" type="text/css">
@@ -38,7 +39,7 @@
 
     <div class="bg-img">
         <form class="container">
-            <h1>ExpressRoute Sizer</h1>
+            <h2>Azure Connection Sizer</h2>
             <label for="text"><b>Data to Transfer (GB)</b></label>
             <input type="tel" class="form-control" id="sizeInGB" placeholder="GB" value="50">
 
@@ -53,7 +54,6 @@
         </form>
     </div>
     <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <div class="overlay-content">
             <p> <a href="javascript:void(0)" onclick="closeNav()">
                 To transfer <span id="gbRequested"></span> GB in <span id="timeInHours"></span></span> hours 
@@ -67,11 +67,16 @@
             </p>
             <p>
                 <a href="https://azure.microsoft.com/en-us/pricing/details/expressroute/" target="_blank">
-                The recommended ExpressRoute size is: <span id="ans" class="link"></span>
-                </a1>
+                The recommended ExpressRoute size is: <span id="erSizeEst" class="link"></span>
+                </a>
+            </p>
+            <p>
+                <a href="https://azure.microsoft.com/en-us/pricing/details/virtual-wan/" target="_blank">
+                The recommended VPN size is: <span id="vpnSizeEst" class="link"></span>
+                </a>
             </p>
             <p><a href="javascript:void(0)" onclick="closeNav()">
-                This workload will utilize <span id="erBusy"></span>% of the ExpressRoute.
+                This workload will utilize <span id="erBusy"></span>% of the ExpressRoute or <span id="vpnBusy"></span>% of the Virtual WAN
                 </a>
             </p>
         </div>
