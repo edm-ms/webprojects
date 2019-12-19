@@ -41,6 +41,7 @@ function closest(erChoices, LinkSize, Mbps) {
     var vpnScaleMax = 40;
     var erSizeEst;
     var vpnSizeEst;
+    var vpnMatch;
 
     for (i in erChoices) {
         m = LinkSize - erChoices[i];
@@ -55,7 +56,8 @@ function closest(erChoices, LinkSize, Mbps) {
     for (i = 0; i < vpnScaleMax; i++) {
         m = LinkSize - (i * 500);
         if (m <= 0) {
-            vpnSizeEst = i + " Virtual Wan Scale Units"
+            vpnSizeEst = i + " Virtual Wan Scale Units";
+            vpnMatch = i;
             m = 0;
             break;
         }
@@ -63,7 +65,7 @@ function closest(erChoices, LinkSize, Mbps) {
 
     var erBusy = (Mbps / erMatch) * 100;
     erBusy = erBusy.toFixed(0);
-    var vpnBusy = (Mbps / (vpnSizeEst * 500)) * 100;
+    var vpnBusy = (Mbps / (vpnMatch * 500)) * 100;
     vpnBusy = vpnBusy.toFixed(0);
     document.getElementById("erBusy").innerHTML = erBusy;
     document.getElementById("vpnBusy").innerHTML = vpnBusy;
