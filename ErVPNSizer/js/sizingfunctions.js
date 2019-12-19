@@ -13,7 +13,7 @@ function convertGB() {
     var data = document.getElementById("sizeInGB").value;
     var time = document.getElementById("timeInMin").value;
     var timeHours = time / 60;
-    timeHours = timeHours.toFixed(1)
+    timeHours = timeHours.toFixed(1);
     var utilization = document.getElementById("utilization").value;
     var overhead = 1.1;
 
@@ -25,8 +25,8 @@ function convertGB() {
     utilization = parseFloat(utilization);
 
     var Mbps = overhead * (data * 1000 * 8) / (time * 60);
-    var LinkSize = (Mbps / utilization);
     Mbps = Math.ceil(Mbps, 1);
+    var LinkSize = (Mbps / utilization);
     LinkSize = Math.ceil(LinkSize, 1);
 
     document.getElementById("Mbps").innerHTML = Mbps;
@@ -38,20 +38,36 @@ function convertGB() {
 function closest(erChoices, LinkSize, Mbps) {
     var i = 0;
     var m = 0;
-    var minDiff = 100;
-    var ans;
+    var vpnScaleMax = 40;
+    var erSizeEst;
+    var vpnSizeEst;
 
     for (i in erChoices) {
         m = LinkSize - erChoices[i];
         if (m <= 0) {
-            ans = erNames[i];
+            erSizeEst = erNames[i];
             erMatch = erChoices[i];
+            m = 0;
             break;
         }
     }
+
+    for (i = 0; i < vpnScaleMax; i++) {
+        m = LinkSize - (i * 500);
+        if (m <= 0) {
+            vpnSizeEst = i + " Virtual Wan Scale Units"
+            m = 0;
+            break;
+        }
+    }
+
     var erBusy = (Mbps / erMatch) * 100;
     erBusy = erBusy.toFixed(0);
+    var vpnBusy = (Mbps / (vpnSizeEst * 500)) * 100;
+    vpnBusy = vpnBusy.toFixed(0);
     document.getElementById("erBusy").innerHTML = erBusy;
-    document.getElementById("ans").innerHTML = ans;
+    document.getElementById("vpnBusy").innerHTML = vpnBusy;
+    document.getElementById("erSizeEst").innerHTML = erSizeEst;
+    document.getElementById("vpnSizeEst").innerHTML = vpnSizeEst;
     openNav();
 }
