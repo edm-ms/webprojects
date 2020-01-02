@@ -32,6 +32,16 @@
             max-width: 370px;
             background-color: white;
         }
+        
+        .containerprogress {
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+            margin: auto;
+            text-align: center;
+            max-width: 400px;
+            background-color: white;
+        }
     </style>
 </head>
 
@@ -78,10 +88,22 @@
                 </a>
             </p>
             <p>
-                <a href="javascript:void(0)" onclick="closeNav()">
-                This workload will utilize <span id="erBusy"></span>% of the ExpressRoute or <span id="vpnBusy"></span>% of the Virtual WAN
-                </a>
+                <div class="containerprogress">
+                    ExpressRoute Busy
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" id="erBusy%" style="width: 10%;">
+                            <span id="erBusy2"></span>%
+                        </div>
+                    </div>
+                    VPN Busy
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" id="vpnBusy%" style="width: 10%;">
+                            <span id="vpnBusy2"></span>%
+                        </div>
+                    </div>
+                </div>
             </p>
+
         </div>
     </div>
 </body>

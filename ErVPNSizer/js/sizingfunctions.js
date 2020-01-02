@@ -67,9 +67,13 @@ function closest(erChoices, LinkSize, Mbps) {
     erBusy = erBusy.toFixed(0);
     var vpnBusy = (Mbps / (vpnMatch * 500)) * 100;
     vpnBusy = vpnBusy.toFixed(0);
-    document.getElementById("erBusy").innerHTML = erBusy;
-    document.getElementById("vpnBusy").innerHTML = vpnBusy;
+    //document.getElementById("erBusy").innerHTML = erBusy;
+    //document.getElementById("vpnBusy").innerHTML = vpnBusy;
+    document.getElementById("erBusy2").innerHTML = erBusy;
+    document.getElementById("vpnBusy2").innerHTML = vpnBusy;
     document.getElementById("erSizeEst").innerHTML = erSizeEst;
     document.getElementById("vpnSizeEst").innerHTML = vpnSizeEst;
+    document.getElementById("erBusy%").style = "Width: " + erBusy + "%";
+    document.getElementById("vpnBusy%").style = "Width: " + vpnBusy + "%";
     openNav();
 }
